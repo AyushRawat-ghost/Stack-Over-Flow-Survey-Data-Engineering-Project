@@ -34,9 +34,9 @@ def connect_sql(database):
         print("Failed to Connect", e)
         return None, None
 
-def write_to_sql(df, table_name, engine,schema):
+def write_to_sql(df, table_name, engine, schema='Silver'):
     try:
-        df.to_sql(table_name, engine,schema, if_exists='replace', index=False )
-        print(f"DataFrame written to SQL table 'Silver.{table_name}' successfully.")
+        df.to_sql(table_name, engine, schema=schema, if_exists='replace', index=False)
+        print(f"DataFrame written to {schema}.{table_name} successfully.")
     except Exception as e:
-        print(f"Failed to write DataFrame to SQL table '{table_name}':", e)
+        print(f"Failed to write {table_name}:", e)
