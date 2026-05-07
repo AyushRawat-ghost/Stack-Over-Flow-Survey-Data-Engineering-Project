@@ -3,7 +3,7 @@ GO
 
 -- Loading 2021 --
 BULK insert Bronze.Survey_2021
-from 'c:\Users\Ayush\Git Repo\Stack-Overflow-Survey-Data-Engineering-Project\Stack Overflow survey\survey_results_public_2021.csv'
+from 'C:\Users\Ayush\Git Repo\Stack-Over-flow-Survey-Data-Engineering-Project\Stack Overflow survey\survey_results_public_2021.csv'
 with (
     format = 'CSV',
     firstrow = 2,
@@ -24,7 +24,7 @@ GO
 
 -- Loading 2022 --
 BULK insert Bronze.Survey_2022
-from 'C:\Users\Ayush\Git Repo\Stack-Overflow-Survey-Data-Engineering-Project\Stack Overflow survey\survey_results_public_2022.csv'
+from 'C:\Users\Ayush\Git Repo\Stack-Over-Flow-Survey-Data-Engineering-Project\Stack Overflow survey\survey_results_public_2022.csv'
 with (
     format = 'CSV',
     firstrow = 2,
@@ -45,7 +45,7 @@ GO
 
 -- Loading 2023 --
 BULK insert Bronze.Survey_2023
-from 'C:\Users\Ayush\Git Repo\Stack-Overflow-Survey-Data-Engineering-Project\Stack Overflow survey\survey_results_public_2023.csv'
+from 'C:\Users\Ayush\Git Repo\Stack-Over-Flow-Survey-Data-Engineering-Project\Stack Overflow survey\survey_results_public_2023.csv'
 with (
     format = 'CSV',
     firstrow = 2,
@@ -66,7 +66,7 @@ GO
 
 -- Loading 2024 --
 BULK insert Bronze.Survey_2024
-from 'C:\Users\Ayush\Git Repo\Stack-Overflow-Survey-Data-Engineering-Project\Stack Overflow survey\survey_results_public_2024.csv'
+from 'C:\Users\Ayush\Git Repo\Stack-Over-Flow-Survey-Data-Engineering-Project\Stack Overflow survey\survey_results_public_2024.csv'
 with (
     format = 'CSV',
     firstrow = 2,
@@ -87,13 +87,13 @@ GO
 
 -- Loading 2025 --
 BULK insert Bronze.Survey_2025
-from 'C:\Users\Ayush\Git Repo\Stack-Overflow-Survey-Data-Engineering-Project\Stack Overflow survey\survey_results_public_2025.csv'
+from 'C:\Users\Ayush\Git Repo\Stack-Over-Flow-Survey-Data-Engineering-Project\Stack Overflow survey\survey_results_public_2025.csv'
 with (
     format = 'CSV',
     firstrow = 2,
     FIELDTERMINATOR = ',',
     ROWTERMINATOR ='0x0a',
-    QUOTE='"',
+    -- QUOTE='"',
     TABLOCK
 );
 GO

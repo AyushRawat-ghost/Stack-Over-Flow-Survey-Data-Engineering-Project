@@ -1,4 +1,7 @@
 -- Creates the database
+DROP DATABASE IF EXISTS Stack_Overflow_Survey;
+GO
+
 create database Stack_Overflow_Survey
 GO
 use Stack_Overflow_Survey;
