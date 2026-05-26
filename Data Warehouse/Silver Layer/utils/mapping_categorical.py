@@ -8,6 +8,11 @@ class MappingCategorical:
             'employment_map': {
                 'Employed full-time': 'Employed',
                 'Employed part-time': 'Employed',
+                'Employed, full-time': 'Employed',
+                'Employed, part-time': 'Employed',
+                'Employed': 'Employed',
+                'Not employed': 'Unemployed',
+                'Student': 'Student',
                 'Independent contractor, freelancer, or self-employed': 'Freelance',
                 'Student, full-time': 'Student',
                 'Student, part-time': 'Student',
@@ -26,7 +31,9 @@ class MappingCategorical:
                 'Primary/elementary school': 'Primary',
                 'Associate degree (A.A., A.S., etc.)': 'Undergraduate',
                 'Something else': 'Other',
-                'Professional degree (JD, MD, etc.)': 'Postgraduate'
+                'Professional degree (JD, MD, etc.)': 'Postgraduate',
+                'Professional degree (JD, MD, Ph.D, Ed.D, etc.)': 'Postgraduate',
+                'Other (please specify):': 'Other'
             },
             'age_1st_code_map': {
                 'Younger than 5 years': '<5',
@@ -128,6 +135,7 @@ class MappingCategorical:
             'I am a developer by profession': 'Professional Developer',
             'I am learning to code': 'Student/Learner',
             'I am not primarily a developer, but I write code sometimes as part of my work': 'Coding Professional',
+            'I am not primarily a developer, but I write code sometimes as part of my work/studies': 'Coding Professional',
             'I code primarily as a hobby': 'Hobbyist',
             'I used to be a developer by profession, but no longer am': 'Retired/Former Developer',
             'None of these': 'Other'
@@ -208,7 +216,11 @@ class MappingCategorical:
             'Developer, embedded applications or devices': 'Embedded/IoT', 'Developer, QA or test': 'QA/Testing',
             'Academic researcher': 'Researcher', 'Scientist': 'Scientist', 'Student': 'Student',
             'Educator': 'Educator', 'Designer': 'Designer', 'Product manager': 'Product Manager',
-            'Marketing or sales professional': 'Marketing/Sales', 'Other (please specify):': 'Other'
+            'Marketing or sales professional': 'Marketing/Sales', 'Other (please specify):': 'Other',
+            'Blockchain': 'Other', 'Cloud infrastructure engineer': 'DevOps', 'Data engineer': 'Data Engineer',
+            'Developer Advocate': 'Other', 'Developer Experience': 'DevOps', 'Developer, AI': 'Data Scientist/ML',
+            'Hardware Engineer': 'Embedded/IoT', 'Project manager': 'Product Manager', 'Research & Development role': 'Researcher',
+            'Security professional': 'SRE'
         },
 
         'stuck_map' : {

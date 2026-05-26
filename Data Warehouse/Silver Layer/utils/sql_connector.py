@@ -20,7 +20,7 @@ class SQLConnector:
         try:
             self.conn = pyodbc.connect(self._conn_str)
             params = urllib.parse.quote_plus(self._conn_str)
-            self.engine = create_engine(f"mssql+pyodbc:///?odbc_connect={params}")
+            self.engine = create_engine(f"mssql+pyodbc:///?odbc_connect={params}", fast_executemany=True)
             
             print(f"Successfully Connected to {self.database}")
             return self 
@@ -52,5 +52,9 @@ class SQLConnector:
 
     def close(self):
         if self.conn:
-            self.conn.close()
-            print("Connection closed.")
+            try:
+                self.conn.close()
+                print("Connection closed.")
+            except Exception:
+                pass
+            self.conn = None
