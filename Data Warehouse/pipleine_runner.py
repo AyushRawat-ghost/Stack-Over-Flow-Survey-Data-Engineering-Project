@@ -90,6 +90,15 @@ class PipelineOrchestrator:
         self.run_sql_script(f"Gold Layer/06_merging_{year}.sql")
 
     # =========================================================================
+    # STEP 5 — Snowflake Schema Setup
+    # Run once: Creates all normalized dimension, hub, and bridge views.
+    # =========================================================================
+    def create_snowflake_schema(self):
+        print("\n=== SNOWFLAKE LAYER — Schema Setup ===")
+        self.run_sql_script("Gold Layer/snowflake/07_split_fact_tables.sql")
+        self.run_sql_script("Gold Layer/snowflake/08_split_bridge_tables.sql")
+
+    # =========================================================================
     # FULL PIPELINE
     # One call to run everything from Bronze -> Silver -> Gold for all years.
     # =========================================================================
@@ -113,6 +122,9 @@ class PipelineOrchestrator:
             for year in years:
                 self.run_silver(year)
                 self.run_gold(year)
+
+            # Step 5: Snowflake schema creation
+            self.create_snowflake_schema()
 
             print("\n" + "=" * 60)
             print("  Pipeline completed successfully for years:", years)
