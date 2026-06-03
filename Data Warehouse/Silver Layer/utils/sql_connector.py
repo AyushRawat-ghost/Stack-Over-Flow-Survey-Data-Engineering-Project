@@ -39,11 +39,11 @@ class SQLConnector:
             print(f"Failed to write {table_name}: {e}")
 
     def read_query(self, query):
-        if not self.conn:
-            print("Error: Connection not initialized. Call connect() first.")
+        if not self.engine:
+            print("Error: Engine not initialized. Call connect() first.")
             return None
         try:
-            df = pd.read_sql_query(query, self.conn)
+            df = pd.read_sql_query(query, self.engine)
             print("Query executed successfully")
             return df
         except Exception as e:

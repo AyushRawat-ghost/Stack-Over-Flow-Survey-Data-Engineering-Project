@@ -7,4 +7,6 @@ sckit-learn
 tensorflow
 pytorch
 jupyter
+scikit-learn
+scipy
 # conda or miniconda to be downlaoded

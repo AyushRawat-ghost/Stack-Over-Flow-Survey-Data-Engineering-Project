@@ -1,3 +1,4 @@
+
 DELETE FROM Gold.Fact_Survey WHERE SurveyYear = CAST('2025-01-01' AS DATETIME);
 GO
 
@@ -10,18 +11,18 @@ DELETE FROM Gold.Bridge_AIModelsHaveWorkedWith_Clean WHERE SurveyYear = CAST('20
 GO
 
 INSERT INTO Gold.Bridge_AIModelsHaveWorkedWith_Clean (SurveyYear, ResponseId, [AIModelsHaveWorkedWith_Clean])
-SELECT CAST('2025-01-01' AS DATETIME) AS SurveyYear, ResponseId, [AIModelsHaveWorkedWith]
+SELECT CAST('2025-01-01' AS DATETIME) AS SurveyYear, ResponseId, [AIModelsHaveWorkedWith_Clean]
 FROM Silver.Bridge_AIModelsHaveWorkedWith_Clean_2025
-WHERE [AIModelsHaveWorkedWith] IS NOT NULL;
+WHERE [AIModelsHaveWorkedWith_Clean] IS NOT NULL;
 GO
 
 DELETE FROM Gold.Bridge_AIModelsWantToWorkWith_Clean WHERE SurveyYear = CAST('2025-01-01' AS DATETIME);
 GO
 
 INSERT INTO Gold.Bridge_AIModelsWantToWorkWith_Clean (SurveyYear, ResponseId, [AIModelsWantToWorkWith_Clean])
-SELECT CAST('2025-01-01' AS DATETIME) AS SurveyYear, ResponseId, [AIModelsWantToWorkWith]
+SELECT CAST('2025-01-01' AS DATETIME) AS SurveyYear, ResponseId, [AIModelsWantToWorkWith_Clean]
 FROM Silver.Bridge_AIModelsWantToWorkWith_Clean_2025
-WHERE [AIModelsWantToWorkWith] IS NOT NULL;
+WHERE [AIModelsWantToWorkWith_Clean] IS NOT NULL;
 GO
 
 DELETE FROM Gold.Bridge_CommPlatformHaveWorkedWith_Clean WHERE SurveyYear = CAST('2025-01-01' AS DATETIME);
@@ -185,3 +186,4 @@ SELECT CAST('2025-01-01' AS DATETIME) AS SurveyYear, ResponseId, [WebframeWantTo
 FROM Silver.Bridge_WebframeWantToWorkWith_Clean_2025
 WHERE [WebframeWantToWorkWith] IS NOT NULL;
 GO
+

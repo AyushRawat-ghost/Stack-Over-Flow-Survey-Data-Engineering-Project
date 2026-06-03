@@ -55,3 +55,6 @@ dmypy.json
 ehthumbs.db
 Thumbs.db
 Desktop.ini
+
+*.pbix
+Exploratory Data Analysis/Analysis and Dashboard.pbix
