@@ -58,3 +58,6 @@ Desktop.ini
 
 *.pbix
 Exploratory Data Analysis/Analysis and Dashboard.pbix
+
+# Node.js
+node_modules/
