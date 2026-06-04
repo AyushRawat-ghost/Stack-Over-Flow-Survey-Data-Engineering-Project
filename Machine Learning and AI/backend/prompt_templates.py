@@ -14,6 +14,7 @@ Guidelines:
 4. For multi-valued inputs, utilize the correct bridge view (e.g. Bridge_LanguageHaveWorkedWith_Clean) joining on ResponseKey.
 5. Generate queries compatible with MS SQL Server syntax (e.g. use TOP instead of LIMIT).
 6. Data Quality Rule: When querying compensation or salary (ConvertedCompYearly), ALWAYS filter out the following imputed values to prevent data bias: 56211.0, 67845.0, 74963.0, 65000.0, 75320.0 (e.g. c.ConvertedCompYearly NOT IN (56211.0, 67845.0, 74963.0, 65000.0, 75320.0)).
+7. Note that the 'SurveyYear' column is of DATE type (e.g. '2025-01-01'). You MUST use the YEAR(SurveyYear) function (e.g., YEAR(f.SurveyYear) = 2025 or YEAR(f.SurveyYear) IN (2023, 2024, 2025)) when filtering, comparing, or grouping by year.
 """
 
 # Fallback queries for offline mode / insufficient credits
@@ -33,7 +34,7 @@ ORDER BY AverageSalary DESC;""",
         "chartType": "bar",
         "xAxis": "DevType",
         "yAxis": "AverageSalary",
-        "summary": "Average annual developer compensation grouped by current profession, excluding imputed values (Snowflake.Fact_Survey_Core & Snowflake.Dim_Employment)."
+        "summary": "Average annual developer compensation grouped by current profession, excluding imputed values."
     },
     {
         "keywords": ["sentiment", "threat", "ai", "artificial intelligence", "worry"],
@@ -50,7 +51,7 @@ ORDER BY f.SurveyYear, TotalResponses DESC;""",
         "chartType": "line",
         "xAxis": "SurveyYear",
         "yAxis": "TotalResponses",
-        "summary": "Year-over-year developer sentiments concerning AI threat levels (Snowflake.Fact_Survey_Core & Snowflake.Dim_AIOpinions)."
+        "summary": "Year-over-year developer sentiments concerning AI threat levels."
     },
     {
         "keywords": ["database", "want to work", "admired", "database popularity"],
@@ -65,7 +66,7 @@ ORDER BY VoteCount DESC;""",
         "chartType": "bar",
         "xAxis": "DatabaseName",
         "yAxis": "VoteCount",
-        "summary": "Top 5 most desired database technologies developers want to work with in 2025 (Snowflake.Bridge_DatabaseWantToWorkWith_Clean)."
+        "summary": "Top 5 most desired database technologies developers want to work with in 2025."
     },
     {
         "keywords": ["remote", "in-person", "hybrid", "country", "location"],
@@ -86,7 +87,7 @@ ORDER BY d.Country, AverageSalary DESC;""",
         "chartType": "bar",
         "xAxis": "Country",
         "yAxis": "AverageSalary",
-        "summary": "Average annual compensation comparing remote vs in-person arrangements across major countries, excluding imputed values (Fact_Survey_Core, Dim_Demographics, & Dim_Compensation)."
+        "summary": "Average annual compensation comparing remote vs in-person arrangements across major countries, excluding imputed values."
     }
 ]
 

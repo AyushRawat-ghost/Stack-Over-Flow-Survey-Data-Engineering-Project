@@ -1387,7 +1387,7 @@ export default function App() {
                   <Cpu className="w-3.5 h-3.5 animate-pulse" />
                   <span>ROCm 6.1</span>
                 </div>
-                <div className="flex items-center space-x-1.5 text-[10px] font-bold font-mono bg-purple-500/10 border border-purple-500/20 text-purple-400 px-3 py-1.5 rounded-xl hover:cyber-glow-purple transition-all duration-300 cursor-help" title="Llama 3.1 70B via Fireworks AI Inference">
+                <div className="flex items-center space-x-1.5 text-[10px] font-bold font-mono bg-purple-500/10 border border-purple-500/20 text-purple-400 px-3 py-1.5 rounded-xl hover:cyber-glow-purple transition-all duration-300 cursor-help" title="DeepSeek V4 Pro via Fireworks AI Inference">
                   <Flame className="w-3.5 h-3.5 animate-pulse" />
                   <span>Fireworks AI</span>
                 </div>
