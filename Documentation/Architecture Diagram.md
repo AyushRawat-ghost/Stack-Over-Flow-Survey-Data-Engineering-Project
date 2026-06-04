@@ -1,3 +1,9 @@
+# Architecture Diagram
+
+Here is the pipeline architecture diagram for reference:
+
+![Architecture Diagram](Architecture%20DIagram.png)
+
 ---
 config:
   layout: dagre

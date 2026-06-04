@@ -13,6 +13,7 @@ Guidelines:
 3. Keep queries read-only. Avoid inserts, updates, deletes, or drop commands.
 4. For multi-valued inputs, utilize the correct bridge view (e.g. Bridge_LanguageHaveWorkedWith_Clean) joining on ResponseKey.
 5. Generate queries compatible with MS SQL Server syntax (e.g. use TOP instead of LIMIT).
+6. Data Quality Rule: When querying compensation or salary (ConvertedCompYearly), ALWAYS filter out the following imputed values to prevent data bias: 56211.0, 67845.0, 74963.0, 65000.0, 75320.0 (e.g. c.ConvertedCompYearly NOT IN (56211.0, 67845.0, 74963.0, 65000.0, 75320.0)).
 """
 
 # Fallback queries for offline mode / insufficient credits
@@ -23,15 +24,16 @@ FALLBACK_QUERIES = [
   d.Current_Profession AS DevType,
   ROUND(AVG(c.ConvertedCompYearly), 2) AS AverageSalary
 FROM Snowflake.Fact_Survey_Core f
-JOIN Dim_Employment d ON f.Dim_EmploymentID = d.Dim_EmploymentID
-JOIN Dim_Compensation c ON f.Dim_CompensationID = c.Dim_CompensationID
-WHERE c.ConvertedCompYearly IS NOT NULL
+JOIN Snowflake.Dim_Employment d ON f.Dim_EmploymentID = d.Dim_EmploymentID
+JOIN Snowflake.Dim_Compensation c ON f.Dim_CompensationID = c.Dim_CompensationID
+WHERE c.ConvertedCompYearly IS NOT NULL 
+  AND c.ConvertedCompYearly NOT IN (56211.0, 67845.0, 74963.0, 65000.0, 75320.0)
 GROUP BY d.Current_Profession
 ORDER BY AverageSalary DESC;""",
         "chartType": "bar",
         "xAxis": "DevType",
         "yAxis": "AverageSalary",
-        "summary": "Average annual developer compensation grouped by current profession (Snowflake.Fact_Survey_Core & Dim_Employment)."
+        "summary": "Average annual developer compensation grouped by current profession, excluding imputed values (Snowflake.Fact_Survey_Core & Snowflake.Dim_Employment)."
     },
     {
         "keywords": ["sentiment", "threat", "ai", "artificial intelligence", "worry"],
@@ -40,15 +42,15 @@ ORDER BY AverageSalary DESC;""",
   a.AIThreat AS ThreatLevel,
   COUNT(*) AS TotalResponses
 FROM Snowflake.Fact_Survey_Core f
-JOIN Dim_AICentral ac ON f.Dim_AICentralID = ac.Dim_AICentralID
-JOIN Dim_AIOpinions a ON ac.Dim_AIOpinionsID = a.Dim_AIOpinionsID
+JOIN Snowflake.Dim_AICentral ac ON f.Dim_AICentralID = ac.Dim_AICentralID
+JOIN Snowflake.Dim_AIOpinions a ON ac.Dim_AIOpinionsID = a.Dim_AIOpinionsID
 WHERE a.AIThreat IS NOT NULL AND a.AIThreat <> 'Unknown'
 GROUP BY f.SurveyYear, a.AIThreat
 ORDER BY f.SurveyYear, TotalResponses DESC;""",
         "chartType": "line",
         "xAxis": "SurveyYear",
         "yAxis": "TotalResponses",
-        "summary": "Year-over-year developer sentiments concerning AI threat levels (Fact_Survey_Core & Dim_AIOpinions)."
+        "summary": "Year-over-year developer sentiments concerning AI threat levels (Snowflake.Fact_Survey_Core & Snowflake.Dim_AIOpinions)."
     },
     {
         "keywords": ["database", "want to work", "admired", "database popularity"],
@@ -56,14 +58,14 @@ ORDER BY f.SurveyYear, TotalResponses DESC;""",
   b.DatabaseWantToWorkWith_Clean AS DatabaseName,
   COUNT(*) AS VoteCount
 FROM Snowflake.Fact_Survey_Core f
-JOIN Bridge_DatabaseWantToWorkWith_Clean b ON f.ResponseKey = b.ResponseKey
+JOIN Snowflake.Bridge_DatabaseWantToWorkWith_Clean b ON f.ResponseKey = b.ResponseKey
 WHERE f.SurveyYear = 2025
 GROUP BY b.DatabaseWantToWorkWith_Clean
 ORDER BY VoteCount DESC;""",
         "chartType": "bar",
         "xAxis": "DatabaseName",
         "yAxis": "VoteCount",
-        "summary": "Top 5 most desired database technologies developers want to work with in 2025 (Bridge_DatabaseWantToWorkWith_Clean)."
+        "summary": "Top 5 most desired database technologies developers want to work with in 2025 (Snowflake.Bridge_DatabaseWantToWorkWith_Clean)."
     },
     {
         "keywords": ["remote", "in-person", "hybrid", "country", "location"],
@@ -72,17 +74,19 @@ ORDER BY VoteCount DESC;""",
   d.RemoteWork AS WorkType,
   ROUND(AVG(c.ConvertedCompYearly), 2) AS AverageSalary
 FROM Snowflake.Fact_Survey_Core f
-JOIN Dim_Demographics d ON f.Dim_DemographicsID = d.Dim_DemographicsID
-JOIN Dim_Employment e ON f.Dim_EmploymentID = e.Dim_EmploymentID
-JOIN Dim_Compensation c ON f.Dim_CompensationID = c.Dim_CompensationID
+JOIN Snowflake.Dim_Demographics d ON f.Dim_DemographicsID = d.Dim_DemographicsID
+JOIN Snowflake.Dim_Employment e ON f.Dim_EmploymentID = e.Dim_EmploymentID
+JOIN Snowflake.Dim_Compensation c ON f.Dim_CompensationID = c.Dim_CompensationID
 WHERE d.Country IN ('United States', 'Germany', 'United Kingdom', 'India')
-  AND d.RemoteWork IS NOT NULL AND c.ConvertedCompYearly IS NOT NULL
+  AND d.RemoteWork IS NOT NULL 
+  AND c.ConvertedCompYearly IS NOT NULL 
+  AND c.ConvertedCompYearly NOT IN (56211.0, 67845.0, 74963.0, 65000.0, 75320.0)
 GROUP BY d.Country, d.RemoteWork
 ORDER BY d.Country, AverageSalary DESC;""",
         "chartType": "bar",
         "xAxis": "Country",
         "yAxis": "AverageSalary",
-        "summary": "Average annual compensation comparing remote vs in-person arrangements across major countries (Fact_Survey_Core, Dim_Demographics, & Dim_Compensation)."
+        "summary": "Average annual compensation comparing remote vs in-person arrangements across major countries, excluding imputed values (Fact_Survey_Core, Dim_Demographics, & Dim_Compensation)."
     }
 ]
 
@@ -99,7 +103,7 @@ def find_fallback_query(user_query: str):
     
     # Generic fallback
     return {
-        "sql": "SELECT TOP 10 Country, AgeCode, Gender_Clean FROM Dim_Demographics;",
+        "sql": "SELECT TOP 10 Country, AgeCode, Gender_Clean FROM Snowflake.Dim_Demographics;",
         "chartType": "bar",
         "xAxis": "Country",
         "yAxis": "AgeCode",

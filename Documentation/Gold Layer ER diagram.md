@@ -1,3 +1,9 @@
+# Gold Layer ER Schema Diagram
+
+Here is the Entity Relationship (ER) diagram for reference:
+
+![Gold Layer ER Diagram](Er%20Diagram.png)
+
 flowchart TD
 %% Styling Definitions
 classDef factLayer fill:#ffccd5,stroke:#ff4d6d,stroke-width:2px,color:#1c1c1c,font-weight:bold;

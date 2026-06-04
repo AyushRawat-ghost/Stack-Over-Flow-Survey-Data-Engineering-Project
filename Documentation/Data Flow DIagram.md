@@ -1,3 +1,9 @@
+# Data Flow Diagram
+
+Here is the data flow diagram for reference:
+
+![Data Flow Diagram](Data%20Flow%20DIagram.png)
+
 graph TD
     subgraph "External Data Sources"
         CSV[Stack Overflow Annual Surveys<br/>2021 - 2025]

@@ -1,3 +1,9 @@
+# CI/CD & Orchestration Diagram
+
+Here is the CI/CD and Orchestration workflow diagram for reference:
+
+![CI/CD & Orchestration Diagram](Ci%20CD.png)
+
 graph TD
     subgraph "Continuous Integration (CI)"
         DEV[Developer: Ayush] -->|Git Push| GITHUB[GitHub Repository]

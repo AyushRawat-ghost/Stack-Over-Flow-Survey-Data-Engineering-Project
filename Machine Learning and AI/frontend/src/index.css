@@ -35,3 +35,225 @@ html, body, #root {
   padding: 0;
   height: 100%;
 }
+
+/* Premium Sci-Fi Cyber Grid Backdrop */
+.cyber-grid {
+  background-image: linear-gradient(rgba(59, 130, 246, 0.03) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(59, 130, 246, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  background-position: center;
+  animation: cyber-grid-scroll 30s linear infinite;
+}
+
+@keyframes cyber-grid-scroll {
+  from { background-position: 0 0; }
+  to { background-position: 50px 50px; }
+}
+
+/* Scanning Overlay Line */
+.cyber-scanner {
+  background: linear-gradient(
+    to bottom,
+    rgba(59, 130, 246, 0) 0%,
+    rgba(59, 130, 246, 0.03) 50%,
+    rgba(59, 130, 246, 0) 100%
+  );
+  animation: scan 10s linear infinite;
+  background-size: 100% 200px;
+}
+
+@keyframes scan {
+  0% { background-position: 0 -200px; }
+  100% { background-position: 0 100%; }
+}
+
+/* Cyber Glow Accents */
+.cyber-glow-blue {
+  box-shadow: 0 0 25px rgba(59, 130, 246, 0.15);
+  border-color: rgba(59, 130, 246, 0.35) !important;
+}
+
+.cyber-glow-purple {
+  box-shadow: 0 0 25px rgba(139, 92, 246, 0.15);
+  border-color: rgba(139, 92, 246, 0.35) !important;
+}
+
+.cyber-glow-teal {
+  box-shadow: 0 0 25px rgba(20, 184, 166, 0.15);
+  border-color: rgba(20, 184, 166, 0.35) !important;
+}
+
+.cyber-glow-pink {
+  box-shadow: 0 0 25px rgba(236, 72, 153, 0.15);
+  border-color: rgba(236, 72, 153, 0.35) !important;
+}
+
+/* Text glow filters */
+.text-glow-blue {
+  text-shadow: 0 0 10px rgba(59, 130, 246, 0.6);
+}
+
+.text-glow-purple {
+  text-shadow: 0 0 10px rgba(139, 92, 246, 0.6);
+}
+
+.text-glow-pink {
+  text-shadow: 0 0 10px rgba(236, 72, 153, 0.6);
+}
+
+.text-glow-teal {
+  text-shadow: 0 0 10px rgba(20, 184, 166, 0.6);
+}
+
+/* Caret blinking animation for Typewriter text effects */
+.caret-blink::after {
+  content: '|';
+  color: #3b82f6;
+  animation: blink 0.8s step-start infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+/* Loading soundwave / data wave animation */
+.data-wave-bar {
+  animation: wave 1.2s ease-in-out infinite alternate;
+}
+
+@keyframes wave {
+  0% { transform: scaleY(0.2); }
+  100% { transform: scaleY(1.2); }
+}
+
+/* Floating visual particle backdrops */
+.floating-particle {
+  animation: float 15s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) scale(1); }
+  50% { transform: translateY(-20px) scale(1.1); }
+}
+
+/* Cyberpunk Angled Corner Clip-Path styling */
+.cyber-corners {
+  clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+}
+
+.cyber-panel {
+  clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+  border: 1px solid rgba(59, 130, 246, 0.15) !important;
+  background: rgba(18, 19, 26, 0.8) !important;
+}
+
+.cyber-button {
+  position: relative;
+  clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+  transition: all 0.3s ease;
+  border-left: 2px solid #3b82f6 !important;
+  border-bottom: 2px solid #3b82f6 !important;
+}
+
+.cyber-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(59, 130, 246, 0.1), rgba(139, 92, 246, 0.15));
+  z-index: -1;
+  transition: opacity 0.3s;
+}
+
+.cyber-button:hover {
+  filter: brightness(1.25);
+  box-shadow: 0 0 15px rgba(59, 130, 246, 0.4);
+  transform: translate(-1px, -1px);
+}
+
+/* Cyberpunk Text Glitch Effect */
+.cyber-glitch {
+  position: relative;
+}
+
+.cyber-glitch::before,
+.cyber-glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #12131a;
+  color: #fff;
+  overflow: hidden;
+}
+
+.cyber-glitch::before {
+  left: 2px;
+  text-shadow: -1.5px 0 #ff0055;
+  clip: rect(44px, 450px, 56px, 0);
+  animation: glitch-anim 4s infinite linear alternate-reverse;
+}
+
+.cyber-glitch::after {
+  left: -2px;
+  text-shadow: -1.5px 0 #00ffbc, 0 1px #00ffbc;
+  clip: rect(85px, 450px, 140px, 0);
+  animation: glitch-anim2 4s infinite linear alternate-reverse;
+}
+
+@keyframes glitch-anim {
+  0% { clip: rect(15px, 9999px, 66px, 0); }
+  10% { clip: rect(34px, 9999px, 55px, 0); }
+  20% { clip: rect(70px, 9999px, 105px, 0); }
+  30% { clip: rect(12px, 9999px, 85px, 0); }
+  40% { clip: rect(98px, 9999px, 150px, 0); }
+  50% { clip: rect(3px, 9999px, 45px, 0); }
+  60% { clip: rect(78px, 9999px, 110px, 0); }
+  70% { clip: rect(40px, 9999px, 90px, 0); }
+  80% { clip: rect(102px, 9999px, 130px, 0); }
+  90% { clip: rect(62px, 9999px, 80px, 0); }
+  100% { clip: rect(15px, 9999px, 70px, 0); }
+}
+
+@keyframes glitch-anim2 {
+  0% { clip: rect(65px, 9999px, 115px, 0); }
+  10% { clip: rect(5px, 9999px, 40px, 0); }
+  20% { clip: rect(95px, 9999px, 135px, 0); }
+  30% { clip: rect(30px, 9999px, 75px, 0); }
+  40% { clip: rect(15px, 9999px, 60px, 0); }
+  50% { clip: rect(110px, 9999px, 145px, 0); }
+  60% { clip: rect(50px, 9999px, 95px, 0); }
+  70% { clip: rect(85px, 9999px, 120px, 0); }
+  80% { clip: rect(20px, 9999px, 65px, 0); }
+  90% { clip: rect(75px, 9999px, 105px, 0); }
+  100% { clip: rect(40px, 9999px, 85px, 0); }
+}
+
+/* Neon animated flowing border overlay */
+.neon-border {
+  position: relative;
+  overflow: hidden;
+}
+
+.neon-border::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #3b82f6, #8b5cf6, #ec4899, transparent);
+  animation: neon-flow 4s linear infinite;
+  background-size: 200% 100%;
+}
+
+@keyframes neon-flow {
+  0% { background-position: 0% 0%; }
+  100% { background-position: -200% 0%; }
+}
+
+

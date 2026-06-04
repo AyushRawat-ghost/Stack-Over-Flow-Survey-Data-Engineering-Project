@@ -66,18 +66,18 @@ def get_database_schema_context() -> str:
     return """
     Views and schemas present in database:
     1. Snowflake.Fact_Survey_Core (ResponseKey, SurveyYear, ResponseId, Dim_DemographicsID, Dim_EmploymentID, Dim_CompensationID, Dim_AICentralID, Dim_TechCentralID, YearsCode, YearsCodePro)
-    2. Dim_Demographics (Dim_DemographicsID, AgeCode, Gender_Clean, Ethnicity_Clean, Sexuality_Clean, TransGender, Accessibility_Status, Mental_Health_Status, Country, USA_State)
-    3. Dim_Employment (Dim_EmploymentID, Current_Profession, EmploymentAddl, Industry, Organization_Size, ICorPM, WorkExp, RemoteWork)
-    4. Dim_Compensation (Dim_CompensationID, CompTotal, Compensation_Frequency, ConvertedCompYearly, Currency_Code)
-    5. Dim_AICentral (Dim_AICentralID, Dim_AIAgentsID, Dim_AINextID, Dim_AIModelsID, Dim_AIToolsID, Dim_AIOpinionsID)
-    6. Dim_TechCentral (Dim_TechCentralID, Dim_TechDatabasesID, Dim_TechPlatformsID, Dim_TechLanguagesWebID, Dim_TechMiscToolsID, Dim_TechEndorseID, Dim_TechOpposeID)
+    2. Snowflake.Dim_Demographics (Dim_DemographicsID, AgeCode, Gender_Clean, Ethnicity_Clean, Sexuality_Clean, TransGender, Accessibility_Status, Mental_Health_Status, Country, USA_State)
+    3. Snowflake.Dim_Employment (Dim_EmploymentID, Current_Profession, EmploymentAddl, Industry, Organization_Size, ICorPM, WorkExp, RemoteWork)
+    4. Snowflake.Dim_Compensation (Dim_CompensationID, CompTotal, Compensation_Frequency, ConvertedCompYearly, Currency_Code)
+    5. Snowflake.Dim_AICentral (Dim_AICentralID, Dim_AIAgentsID, Dim_AINextID, Dim_AIModelsID, Dim_AIToolsID, Dim_AIOpinionsID)
+    6. Snowflake.Dim_TechCentral (Dim_TechCentralID, Dim_TechDatabasesID, Dim_TechPlatformsID, Dim_TechLanguagesWebID, Dim_TechMiscToolsID, Dim_TechEndorseID, Dim_TechOpposeID)
     
     Many-to-Many Bridge Tables (Join on ResponseKey):
-    - Bridge_LanguageHaveWorkedWith_Clean (ResponseKey, LanguageHaveWorkedWith_Clean)
-    - Bridge_DatabaseHaveWorkedWith_Clean (ResponseKey, DatabaseHaveWorkedWith_Clean)
-    - Bridge_DatabaseWantToWorkWith_Clean (ResponseKey, DatabaseWantToWorkWith_Clean)
-    - Bridge_AIModelsHaveWorkedWith_Clean (ResponseKey, AIModelsHaveWorkedWith_Clean)
-    - Bridge_DevType_Clean (ResponseKey, DevType_Clean)
+    - Snowflake.Bridge_LanguageHaveWorkedWith_Clean (ResponseKey, LanguageHaveWorkedWith_Clean)
+    - Snowflake.Bridge_DatabaseHaveWorkedWith_Clean (ResponseKey, DatabaseHaveWorkedWith_Clean)
+    - Snowflake.Bridge_DatabaseWantToWorkWith_Clean (ResponseKey, DatabaseWantToWorkWith_Clean)
+    - Snowflake.Bridge_AIModelsHaveWorkedWith_Clean (ResponseKey, AIModelsHaveWorkedWith_Clean)
+    - Snowflake.Bridge_DevType_Clean (ResponseKey, DevType_Clean)
     """
 
 def infer_chart_metadata(columns, rows):
